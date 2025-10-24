@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}{{projeto.nome}} | Meu Portfólio{% endblock %}
+
+{% block content %}
+    <style>
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1.25rem;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-section h3::before {
+            content: '';
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .github-link:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        }
+
+        .github-link::before {
+            content: '⚡';
+            font-size: 1.25rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+
+    <a href="{% url 'lista_projetos' %}" class="back-link">Voltar para projetos</a>
+
+    <div class="project-header">
+        <h1>{{ projeto.nome }}</h1>
+    </div>
+
+    <div class="project-section">
+        <h3>Detalhes do projeto</h3>
+        <p>{{ projeto.descricao }}</p>
+    </div>
+
+    <div class="project-section">
+        <h3>Tecnologias utilizadas</h3>
+        <p>{{ projeto.tecnologias }}</p>
+    </div>
+
+    <div class="project-section">
+        <h3>Repositório</h3>
+        <p>Confira o código-fonte completo no GitHub:</p>
+        <a href="{{ projeto.github_link }}" target="_blank" class="github-link">
+            Acessar Repositório
+        </a>
+    </div>
+{% endblock %}

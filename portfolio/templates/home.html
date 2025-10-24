@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Meu Portfólio{% endblock %}
+
+{% block content %}
+    <style>
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #0099ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: var(--bg-primary);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+        }
+
+        .contact-item strong {
+            color: var(--accent-primary);
+            min-width: 100px;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+
+    <div class="hero">
+        <h1>Sobre mim</h1>
+        <p>Olá! Meu nome é Matheus Braga e sou um desenvolvedor de software. Tenho experiência em diversas tecnologias e estou sempre aprendendo mais.</p>
+    </div>
+
+    <section class="section">
+        <h2>Habilidades</h2>
+        <div class="skills-grid">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">C/C++</div>
+            <div class="skill-tag">C#</div>
+            <div class="skill-tag">HTML & CSS</div>
+            <div class="skill-tag">Django</div>
+            <div class="skill-tag">React</div>
+            <div class="skill-tag">Arduino</div>
+            <div class="skill-tag">Raspberry Pi</div>
+            <div class="skill-tag">Git & GitHub</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Contatos</h2>
+        <div class="contact-links">
+            <div class="contact-item">
+                <strong>Email:</strong>
+                <span>matheuskbraga9@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <strong>LinkedIn:</strong>
+                <a href="https://www.linkedin.com/in/mbragaa/" target="_blank">linkedin.com/in/mbragaa</a>
+            </div>
+            <div class="contact-item">
+                <strong>GitHub:</strong>
+                <a href="https://github.com/matheuskbraga" target="_blank">github.com/matheuskbraga</a>
+            </div>
+            <div class="contact-item">
+                <strong>Instagram:</strong>
+                <a href="https://www.instagram.com/matheuskbraga/" target="_blank">@matheuskbraga</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

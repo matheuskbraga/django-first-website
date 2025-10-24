@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Projetos | Meu Portfólio{% endblock %}
+
+{% block content %}
+    <style>
+        .projects-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-card a::after {
+            content: '→';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover a {
+            color: var(--accent-primary);
+        }
+
+        .project-card:hover a::after {
+            transform: translateX(8px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .projects-header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div class="projects-header">
+        <h1>Projetos</h1>
+        <p>Projetos que eu desenvolvi.</p>
+    </div>
+
+    {% if projetos %}
+        <ul class="projects-grid">
+            {% for key, infos in projetos.items %}
+                <li class="project-card">
+                    <a href="{% url 'detalhes_projeto' id_projeto=key %}">{{ infos.nome }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="empty-state">
+            <h3>Nenhum projeto encontrado</h3>
+            <p>Em breve novos projetos serão adicionados!</p>
+        </div>
+    {% endif %}
+{% endblock %}
